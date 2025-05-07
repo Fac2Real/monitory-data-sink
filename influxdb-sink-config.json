@@ -1,0 +1,23 @@
+{
+  "name": "influxdb-sink-connector",
+  "config": {
+    "connector.class": "io.confluent.influxdb.InfluxDBSinkConnector",
+    "tasks.max": "1",
+    "topics": "EQUIPMENT,ENVIRONMENT",
+    "influxdb.url": "http://influxdb:8086",
+    "influxdb.username": "myuser",
+    "influxdb.password": "mypassword",
+    "influxdb.db": "monitory",
+    "measurement.name.format": "${topic}",
+    "influxdb.tags.from.value": "zoneId,equipId,sensorId,sensorType",
+    "influxdb.fields.from.value": "val",
+    "influxdb.timestamp.from.value": "time",
+    "influxdb.timestamp.precision": "MILLISECONDS",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false",
+    "errors.tolerance": "all",
+    "errors.log.enable": "true",
+    "errors.log.include.messages": "true"
+  }
+}
