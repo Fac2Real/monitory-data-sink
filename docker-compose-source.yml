@@ -7,8 +7,8 @@ services:
       - "8081:8081"
       - "6123:6123"
     networks:
-      - monitory-sink_monitory-network
+      - datastream_monitory-network
 
 networks:
-  monitory-sink_monitory-network:
+  datastream_monitory-network:
     external: true
