@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  monitory-data:
+    image: 853660505909.dkr.ecr.ap-northeast-2.amazonaws.com/monitory:flink-latest
+    ports:
+      - "8081:8081"
+      - "6123:6123"
+    networks:
+      - monitory-sink_monitory-network
+
+networks:
+  monitory-sink_monitory-network:
+    external: true
