@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   backend:
-    image: your-ecr-repo/backend:backend-latest
+    image: 853660505909.dkr.ecr.ap-northeast-2.amazonaws.com/springboot:backend-latest
     container_name: backend
     ports:
       - "8080:8080"
