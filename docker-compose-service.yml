@@ -1,15 +1,15 @@
 version: '3.8'
 
 services:
-  frontend:
-      image: 853660505909.dkr.ecr.ap-northeast-2.amazonaws.com/springboot:frontend-latest
-      ports:
-        - "80:80"
-      restart: unless-stopped
-      depends_on:
-        - backend
-      networks:
-        - datastream_monitory-network
+  # frontend:
+  #     image: 853660505909.dkr.ecr.ap-northeast-2.amazonaws.com/springboot:frontend-latest
+  #     ports:
+  #       - "80:80"
+  #     restart: unless-stopped
+  #     depends_on:
+  #       - backend
+  #     networks:
+  #       - datastream_monitory-network
 
   backend:
     image: 853660505909.dkr.ecr.ap-northeast-2.amazonaws.com/springboot:backend-latest
