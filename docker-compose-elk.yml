@@ -1,7 +1,7 @@
 services:
   elasticsearch:
-    #    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.21
-    image: juneshyoo/es-kibana:cleaned # push 한 이미지
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.21
+    #    image: juneshyoo/es-kibana:cleaned # push 한 이미지
     #    image: juneshyoo/es-with-kibana-data:latest  # ✅ 네가 push한 이미지 사용
     container_name: elasticsearch
     environment:
@@ -15,12 +15,14 @@ services:
 
   kibana:
     #    image: docker.elastic.co/kibana/kibana:7.17.21
-    image: juneshyoo/kibana-objects:cleaned
+    #    image: juneshyoo/kibana-objects:cleaned
+    image: wdd1016/kibana
     container_name: kibana
     ports:
       - "5601:5601"  # Kibana UI
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - SERVER_HOST="0.0.0.0"  
     depends_on:
       - elasticsearch
 #    volumes:
