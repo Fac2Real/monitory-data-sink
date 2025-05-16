@@ -18,7 +18,7 @@ services:
   kibana:
     #    image: docker.elastic.co/kibana/kibana:7.17.21
     #    image: juneshyoo/kibana-objects:cleaned
-    image: wdd1016/kibana
+    image: juneshyoo/kibana-custom:5.16
     container_name: kibana
     networks:
       - datastream_monitory-network
