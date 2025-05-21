@@ -1,9 +1,11 @@
 services:
   elasticsearch:
-    #    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.21
-    image: juneshyoo/es-kibana:cleaned # push 한 이미지
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.21
+    #    image: juneshyoo/es-kibana:cleaned # push 한 이미지
     #    image: juneshyoo/es-with-kibana-data:latest  # ✅ 네가 push한 이미지 사용
     container_name: elasticsearch
+    networks:
+      - datastream_monitory-network
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false  # 인증 비활성화 (개발용)
@@ -15,12 +17,16 @@ services:
 
   kibana:
     #    image: docker.elastic.co/kibana/kibana:7.17.21
-    image: juneshyoo/kibana-objects:cleaned
+    #    image: juneshyoo/kibana-objects:cleaned
+    image: juneshyoo/kibana-custom:5.16
     container_name: kibana
+    networks:
+      - datastream_monitory-network
     ports:
       - "5601:5601"  # Kibana UI
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - SERVER_HOST="0.0.0.0"  
     depends_on:
       - elasticsearch
 #    volumes:
@@ -30,3 +36,7 @@ services:
 #volumes:
 #  es-data:
 #  kibana-data:
+
+networks:
+  datastream_monitory-network:
+    external: true
