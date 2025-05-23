@@ -18,6 +18,9 @@
     "value.converter.schemas.enable": "false",
     "errors.tolerance": "all",
     "errors.log.enable": "true",
-    "errors.log.include.messages": "true"
+    "errors.log.include.messages": "true",
+    "transforms": "CastVal",
+    "transforms.CastVal.type": "org.apache.kafka.connect.transforms.Cast$Value",
+    "transforms.CastVal.spec": "val:float64"
   }
 }

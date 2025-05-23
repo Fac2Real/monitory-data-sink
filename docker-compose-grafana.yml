@@ -1,0 +1,37 @@
+services:
+  grafana:
+    image: 853660505909.dkr.ecr.ap-northeast-2.amazonaws.com/zone-grafana
+    container_name: grafana
+    user: root
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - datastream_monitory-network
+    environment:
+      GF_SECURITY_ADMIN_USER:      "admin"
+      GF_SECURITY_ADMIN_PASSWORD:  "NewSecureP@ss"
+      GF_AUTH_ANONYMOUS_ENABLED: "true"    # 익명 뷰어 활성
+      GF_AUTH_ANONYMOUS_ORG_ROLE: "Viewer"
+      GF_SECURITY_ALLOW_EMBEDDING: "true"   # iframe 허용
+      GF_SECURITY_COOKIE_SECURE: "false" # HTTP 환경이므로 secure 쿠키 비활성화
+      GF_SECURITY_COOKIE_SAMESITE: lax # SameSite 정책을 lax로 (None은 HTTPS+secure 쿠키 필요)
+      GF_SERVER_ROOT_URL: https://grafana.monitory.space/ # 외부에서 접속할 URL (포트 포함)
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        if [ ! -f /var/lib/grafana/grafana.db ]; then
+          cp /tmp/grafana.db /var/lib/grafana/grafana.db
+          chown grafana:grafana /var/lib/grafana/grafana.db
+        fi
+        exec /run.sh
+
+networks:
+  datastream_monitory-network:
+    external: true
+
+volumes:
+  grafana_data:
+
