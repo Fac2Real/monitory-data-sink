@@ -13,7 +13,9 @@ services:
     networks:
       - datastream_monitory-network
     depends_on:
-      - mysql
+      mysql:
+        condition: service_started
+    restart: on-failure
 
   mysql:
     image: mysql:8
@@ -27,8 +29,14 @@ services:
       - "3306:3306"
     networks:
       - datastream_monitory-network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "-u", "user", "-p", "factor2al", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
     volumes:
       - mysql-data:/var/lib/mysql
+    restart: on-failure
 
 
 networks:
