@@ -2,11 +2,13 @@
 
 FROM confluentinc/cp-kafka-connect:latest
 
-RUN confluent-hub install --no-prompt confluentinc/kafka-connect-influxdb:latest
-
 USER root
 
-RUN microdnf install -y curl && microdnf clean all
+RUN microdnf install -y curl --disablerepo=temurin-jdk && microdnf clean all
+
+RUN confluent-hub install --no-prompt confluentinc/kafka-connect-influxdb:1.2.11
+
+ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components"
 
 USER appuser
 
