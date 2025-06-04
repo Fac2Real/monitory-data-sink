@@ -1,0 +1,14 @@
+services:
+  model-server:
+    image: 853660505909.dkr.ecr.ap-northeast-2.amazonaws.com/model-server:dev-latest
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    networks:
+      - datastream_monitory-network
+
+networks:
+  datastream_monitory-network:
+    external: true
+
