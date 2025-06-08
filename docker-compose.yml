@@ -1,7 +1,7 @@
 services:
   zookeeper:
     networks:
-      - datastream_monitory-network
+      - monitory-network
     image: confluentinc/cp-zookeeper:latest
     ports:
       - "2181:2181"
@@ -12,7 +12,7 @@ services:
   kafka:
     image: confluentinc/cp-kafka:latest
     networks:
-      - datastream_monitory-network
+      - monitory-network
     depends_on:
       - zookeeper
     environment:
@@ -30,7 +30,7 @@ services:
 
   influxdb:
     networks:
-      - datastream_monitory-network
+      - monitory-network
     image: influxdb:1.11
     ports:
       - "8086:8086"
@@ -45,7 +45,7 @@ services:
 
   # chronograf:
   #   networks:
-  #     - datastream_monitory-network
+  #     - monitory-network
   #   image: chronograf:1.9
   #   ports:
   #     - "8888:8888"
@@ -57,7 +57,7 @@ services:
   connect:
     image: confluentinc/cp-kafka-connect:latest
     networks:
-      - datastream_monitory-network
+      - monitory-network
     depends_on:
       kafka:
         condition: service_started
@@ -96,5 +96,5 @@ volumes:
   influxdb_data:
 
 networks:
-  datastream_monitory-network:
+  monitory-network:
     driver: bridge
