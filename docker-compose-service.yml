@@ -11,31 +11,31 @@ services:
       - .env
     networks:
       - datastream_monitory-network
-    depends_on:
-      mysql:
-        condition: service_started
+    # depends_on:
+    #   mysql:
+    #     condition: service_started
     restart: on-failure
 
-  mysql:
-    image: mysql:8
-    container_name: mysql_container
-    environment:
-      MYSQL_ROOT_PASSWORD: factor2al
-      MYSQL_DATABASE: my_database
-      MYSQL_USER: user
-      MYSQL_PASSWORD: factor2al
-    ports:
-      - "3306:3306"
-    networks:
-      - datastream_monitory-network
-    healthcheck:
-      test: [ "CMD", "mysqladmin", "-u", "user", "-p", "factor2al", "ping", "-h", "localhost" ]
-      interval: 10s
-      timeout: 5s
-      retries: 3
-    volumes:
-      - mysql-data:/var/lib/mysql
-    restart: on-failure
+  # mysql:
+  #   image: mysql:8
+  #   container_name: mysql_container
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: factor2al
+  #     MYSQL_DATABASE: my_database
+  #     MYSQL_USER: user
+  #     MYSQL_PASSWORD: factor2al
+  #   ports:
+  #     - "3306:3306"
+  #   networks:
+  #     - datastream_monitory-network
+  #   healthcheck:
+  #     test: [ "CMD", "mysqladmin", "-u", "user", "-p", "factor2al", "ping", "-h", "localhost" ]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 3
+  #   volumes:
+  #     - mysql-data:/var/lib/mysql
+  #   restart: on-failure
 
 
 networks:
@@ -43,5 +43,5 @@ networks:
     external: true
 
 
-volumes:
-  mysql-data:
+# volumes:
+#   mysql-data:

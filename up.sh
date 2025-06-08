@@ -20,10 +20,10 @@ sleep 3
 
 docker-compose -f docker-compose-grafana.yml up -d --pull always
 
-sleep 3
+# sleep 3
 
-docker-compose -f docker-compose-service.yml up -d --pull always
+# docker-compose -f docker-compose-service.yml up -d --pull always
 
-sleep 3
+# sleep 3
 
-docker-compose -f docker-compose-model.yml up -d --pull always
+# docker-compose -f docker-compose-model.yml up -d --pull always
