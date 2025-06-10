@@ -3,8 +3,8 @@ services:
   backend:
     image: 853660505909.dkr.ecr.ap-northeast-2.amazonaws.com/springboot:backend-latest
     container_name: backend
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/my_database
+    # environment:
+    #   SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/my_database
     ports:
       - "8080:8080"
     env_file:
