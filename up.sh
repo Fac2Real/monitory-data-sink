@@ -28,4 +28,9 @@ docker-compose -f docker-compose-grafana.yml up -d --pull always
 
 # docker-compose -f docker-compose-model.yml up -d --pull always
 
+until curl -s http://localhost:8083/connectors; do
+  echo "Waiting for Kafka Connect..."
+  sleep 10
+done
+
 curl -X POST -H "Content-Type: application/json" --data '@influxdb-sink-config.json' http://localhost:8083/connectors
