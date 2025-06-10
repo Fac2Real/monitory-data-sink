@@ -27,3 +27,5 @@ docker-compose -f docker-compose-grafana.yml up -d --pull always
 # sleep 3
 
 # docker-compose -f docker-compose-model.yml up -d --pull always
+
+curl -X POST -H "Content-Type: application/json" --data '@influxdb-sink-config.json' http://localhost:8083/connectors
